@@ -1,1 +1,6 @@
+//https://getbootstrap.com/docs/4.4/getting-started/theming/
+$theme-colors: (
+  "primary": #00d948,
+  "danger": #ff36ff
+);
 @import '~bootstrap/scss/bootstrap';
