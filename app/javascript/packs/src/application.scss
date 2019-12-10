@@ -1,6 +1,8 @@
 //https://getbootstrap.com/docs/4.4/getting-started/theming/
 $theme-colors: (
-  "primary": #00d948,
-  "danger": #ff36ff
+  "primary": #228B22,
+  "success": #B2AC88,
+  "danger": #C5552C,
 );
+
 @import '~bootstrap/scss/bootstrap';
