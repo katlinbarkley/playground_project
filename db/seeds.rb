@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#check to see if a user with the role of admin already exists, if it doesn't exist, create it. If it does ignore it.
+
+if User.where(:role => "admin").length == 0
+    User.create(email: 'admin@admin.com', password: 'asdfASDF1', first_name: 'Annie', last_name: 'Adams', zipcode: '12345', role: 'admin')
+end
+
+#after rerun db:seeds
