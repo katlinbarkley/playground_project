@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @playground.address %>
+</p>
+
+<p>
+  <strong>Indoor:</strong>
+  <%= @playground.indoor %>
+</p>
+
+<p>
+  <strong>Food:</strong>
+  <%= @playground.food %>
+</p>
+
+<p>
+  <strong>Restaurant:</strong>
+  <%= @playground.restaurant %>
+</p>
+
+<p>
+  <strong>Fun:</strong>
+  <%= @playground.fun %>
+</p>
+
+<p>
+  <strong>Clean:</strong>
+  <%= @playground.clean %>
+</p>
+
+<p>
+  <strong>Safety:</strong>
+  <%= @playground.safety %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @playground.photo %>
+</p>
+
+<%= link_to 'Edit', edit_playground_path(@playground) %> |
+<%= link_to 'Back', playgrounds_path %>
