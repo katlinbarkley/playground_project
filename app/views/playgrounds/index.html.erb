@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Playgrounds</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Indoor</th>
+      <th>Food</th>
+      <th>Restaurant</th>
+      <th>Fun</th>
+      <th>Clean</th>
+      <th>Safety</th>
+      <th>Photo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @playgrounds.each do |playground| %>
+      <tr>
+        <td><%= playground.address %></td>
+        <td><%= playground.indoor %></td>
+        <td><%= playground.food %></td>
+        <td><%= playground.restaurant %></td>
+        <td><%= playground.fun %></td>
+        <td><%= playground.clean %></td>
+        <td><%= playground.safety %></td>
+        <td><%= playground.photo %></td>
+        <td><%= link_to 'Show', playground %></td>
+        <td><%= link_to 'Edit', edit_playground_path(playground) %></td>
+        <td><%= link_to 'Destroy', playground, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Playground', new_playground_path %>
