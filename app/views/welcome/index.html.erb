@@ -1,5 +1,45 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
-<div class="alert alert-primary" role="alert">
-  A simple primary alert—check it out!
+
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      Put the map here!
+    </div>
+    <div class="col-3">
+      <div class="container shadow p-3 mb-5 rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: 10px; padding: 10px">  
+        <form>
+        <h5> Search For a Playground </h5>
+          <div class="form-group">
+            <label for="zipcodesearch">Zipcode</label>
+            <input type="text" class="form-control" id="zipcodesearch" aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="selectradius">View results within:</label>
+              <select class="form-control" id="selectradius">
+                <option>5 miles</option>
+                <option>10 miles</option>
+                <option>25 miles</option>
+                <option>50 miles</option>
+                <option>100 miles</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <h6>Also Looking For:</h6>
+            <div class="checkbox">
+              <label><input type="checkbox"> food</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox"> restrooms</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox"> outside</label>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox"> inside</label>
+            </div>
+          </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
