@@ -31,51 +31,71 @@ document.addEventListener("DOMContentLoaded", function(){
 
 </script>
 <div class="container" style="padding-top: 25px; padding-bottom: 25px">
-  <div class="row">
-    <div class="col-9">
+
+  <div style="display: flex; justify-content: space-between; flex-wrap: wrap">
+    
+    <div>
     <span id="status">
-      Put the map here!
+      Lat Long
       </span>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12947.49722650415!2d-78.64553645!3d35.7784638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89ac5f7062c4d69d%3A0x9a1d32a2ea4a817d!2sThe%20Pit%20Authentic%20Barbecue!5e0!3m2!1sen!2sus!4v1576680864619!5m2!1sen!2sus" frameborder="0" style="border:0; flex: 1; height: auto" allowfullscreen=""></iframe>
     </div>
-    <div class="col-3">
+
+    <div>
       <div class="container shadow p-3 mb-5 rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: 10px; padding: 10px">  
-        <form>
-        <h5> Search For a Playground </h5>
+        <%= form_with(url: "/welcome/index", method: "get", local: true) do %>
+        
+          <h5> Search For a Playground </h5>
+
           <div class="button">
-            <label for="zipcodesearch">Zipcode</label>
-            <input type="text" class="form-control" id="zipcodesearch" aria-describedby="emailHelp">
-          </div>
+            <label for="zipcode_search">Zipcode</label>
+            <%= text_field_tag(:zipcode, @zipcode, class:"form-control") %>
+            </div>
+
+          <div class="button">
+            <label for="current_location">
+            <a style="font-size: 12px; color: black; text-decoration: underline" href="#">Use my current location</a>
+            </label>
+            </div>
+
+
           <div class="form-group">
-            <span id="find-me" style="font-size: 12px; color: black; text-decoration: underline; cursor: pointer;">Use my current location</span>
+            <label for="select_radius">View results within:</label>
+            <%= select_tag(:radius, options_for_select([['5 miles', 5], ['10 miles', 10], ['25 miles', 25], ['50 miles', 50], ['100 miles', 100]]), class:"form-control") %>
           </div>
 
           <div class="form-group">
-            <label for="selectradius">View results within:</label>
-              <select class="form-control" id="selectradius">
-                <option>5 miles</option>
-                <option>10 miles</option>
-                <option>25 miles</option>
-                <option>50 miles</option>
-                <option>100 miles</option>
-              </select>
+
+            <h6>Only show playgrounds with:</h6>
+
+            <div class="checkbox">
+                <%= check_box_tag(:food, class:"checkbox") %>
+                <label for="food">food</label>
+            </div>
+
+            <div class="checkbox">
+                <%= check_box_tag(:restrooms, class:"checkbox") %>
+                <label for="restrooms">restrooms</label>
+            </div>
+
+            <div class="checkbox">
+                <%= check_box_tag(:outdoor, class:"checkbox") %>
+                <label for="outdoor">outdoor</label>
+            </div>
+
+            <div class="checkbox">
+                <%= check_box_tag(:indoor, class:"checkbox") %>
+                <label for="indoor">indoor</label>
+            </div>
+
           </div>
-          <div class="form-group">
-            <h6>Also Looking For:</h6>
-            <div class="checkbox">
-              <label><input type="checkbox"> food</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox"> restrooms</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox"> outside</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox"> inside</label>
-            </div>
-          </div>
-        <button type="submit" class="btn btn-primary">Search</button>
-        </form>
+
+        <%= submit_tag("Search", class:"btn btn-primary") %>
+
+        <%= hidden_field_tag(:lat, "201") %>
+        <%= hidden_field_tag(:long, "300") %>
+
+        <% end %>
       </div>
     </div>
   </div>
