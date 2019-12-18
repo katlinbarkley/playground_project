@@ -1,8 +1,41 @@
+<script>
 
+function geoFindMe() {
+
+  const status = document.querySelector('#status');
+
+  function success(position) {
+    const latitude  = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    status.textContent = latitude + " " + longitude;
+  }
+
+  function error() {
+    status.textContent = 'Unable to retrieve your location';
+  }
+
+  if (!navigator.geolocation) {
+    status.textContent = 'Geolocation is not supported by your browser';
+  } else {
+    status.textContent = 'Locating…';
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
+}
+// wait for the page to fully finish loading
+document.addEventListener("DOMContentLoaded", function(){
+  document.querySelector('#find-me').addEventListener('click', geoFindMe );
+});
+
+
+</script>
 <div class="container" style="padding-top: 25px; padding-bottom: 25px">
   <div class="row">
     <div class="col-9">
+    <span id="status">
       Put the map here!
+      </span>
     </div>
     <div class="col-3">
       <div class="container shadow p-3 mb-5 rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: 10px; padding: 10px">  
@@ -13,8 +46,9 @@
             <input type="text" class="form-control" id="zipcodesearch" aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <a style="font-size: 12px; color: black; text-decoration: underline" href="#">Use my current location</a>
+            <span id="find-me" style="font-size: 12px; color: black; text-decoration: underline; cursor: pointer;">Use my current location</span>
           </div>
+
           <div class="form-group">
             <label for="selectradius">View results within:</label>
               <select class="form-control" id="selectradius">
@@ -46,3 +80,4 @@
     </div>
   </div>
 </div>
+
