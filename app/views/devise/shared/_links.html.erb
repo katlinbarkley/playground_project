@@ -1,7 +1,9 @@
 
 <h6> Already have an account? </h6>
 <%- if controller_name != 'sessions' %>
-  <div class="btn btn-success"><%= link_to "Login", new_session_path(resource_name) %><br /></div>
+  <div class="form-group btn btn-success">
+  <a style="color: white"><%= link_to "Login", new_session_path(resource_name) %></a><br />
+  </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
@@ -20,10 +22,10 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end %>
 
-<h6> Sign in with Google </h6>
-<div div class="btn btn-success"<
+<div style="padding-top: 15px">
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+    <%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %>
   <% end %>
+</div
 <% end %>
