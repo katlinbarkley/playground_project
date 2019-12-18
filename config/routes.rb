@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :playgrounds
   root 'welcome#index'
+
+  get 'welcome/index'
   
   get 'admin/index'
 
