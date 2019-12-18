@@ -16,9 +16,25 @@
     <%= form.text_field :address, class: "form-control" %>
   </div>
 
+    <div class="form-group">
+    <%= form.label :zipcode %>
+    <%= form.text_field :zipcode, class: "form-control" %>
+  </div>
+
+
   <div class="form-group">
     <%= form.label :indoor %>
     <%= form.check_box :indoor, class: "form-control" %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :outdoor %>
+    <%= form.check_box :outdoor, class: "form-control" %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :restrooms %>
+    <%= form.check_box :restrooms, class: "form-control" %>
   </div>
 
   <div class="form-group">
