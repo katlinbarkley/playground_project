@@ -22,44 +22,44 @@
   </div>
 
 
-  <div class="form-group">
+  <div class="checkbox">
     <%= form.label :indoor %>
-    <%= form.check_box :indoor, class: "form-control" %>
+    <%= form.check_box :indoor, class: "checkbox" %>
   </div>
 
-    <div class="form-group">
+    <div class="checkbox">
     <%= form.label :outdoor %>
-    <%= form.check_box :outdoor, class: "form-control" %>
+    <%= form.check_box :outdoor, class: "form-checkbox" %>
   </div>
 
-    <div class="form-group">
+    <div class="checkbox">
     <%= form.label :restrooms %>
-    <%= form.check_box :restrooms, class: "form-control" %>
+    <%= form.check_box :restrooms, class: "checkbox" %>
   </div>
 
-  <div class="form-group">
+  <div class="checkbox">
     <%= form.label :food %>
-    <%= form.check_box :food, class: "form-control" %>
+    <%= form.check_box :food, class: "checkbox" %>
   </div>
 
-  <div class="form-group">
+  <div class="checkbox">
     <%= form.label :restaurant %>
-    <%= form.text_field :restaurant, class: "form-control" %>
+    <%= form.text_field :restaurant, class: "checkbox" %>
   </div>
 
   <div class="form-group">
     <%= form.label :fun %>
-    <%= form.number_field :fun, class: "form-control" %>
+    <%= select_tag(:fun, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), class:"form-control") %>
   </div>
 
   <div class="form-group">
     <%= form.label :clean %>
-    <%= form.number_field :clean, class: "form-control" %>
+    <%= select_tag(:clean, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), class:"form-control") %>
   </div>
 
   <div class="form-group">
     <%= form.label :safety %>
-    <%= form.number_field :safety, class: "form-control" %>
+    <%= select_tag(:safety, options_for_select([['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), class:"form-control") %>
   </div>
 
   <div class="form-group">
@@ -68,6 +68,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit(class:"btn btn-primary") %>
   </div>
 <% end %>
