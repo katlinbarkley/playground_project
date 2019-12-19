@@ -3,8 +3,8 @@
    <%if @playgrounds%>
     <%@playgrounds.each do |playground|%>
     playgrounds.push({
-        'latitude': '<%= j playground[:latitude].to_s %>',
-        'longitude': '<%= j playground[:longitude].to_s %>',
+        'latitude': '<%= j playground.latitude.to_s %>',
+        'longitude': '<%= j playground.longitude.to_s %>',
         'image': ''
       })   
       <% end %>
