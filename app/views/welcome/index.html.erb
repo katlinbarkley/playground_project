@@ -10,92 +10,16 @@
       <% end %>
     <% end %>
 <% end %>
-<script>
-function initializeMap(latitude, longitude) {
-      
-        if(playgrounds.length === 0 && !latitude && !longitude){
-          return
-        } else if(latitude && longitude) {
-          playgrounds.unshift({latitude: latitude, longitude: longitude, image: "" })
-        }
-        
-        var myCoords = new google.maps.LatLng(playgrounds[0].latitude,playgrounds[0].longitude);
-        
-        var address = "test"
-  
-        var mapOptions = {
-           zoom: 12,
-           scrollwheel: false,   
-           center: myCoords
-        }
-    
-        var map = new google.maps.Map(document.getElementById('playgrounds-map'), mapOptions);
-        playgrounds.forEach(playground => {
-          var cords = new google.maps.LatLng(playground.latitude,playground.longitude);
-          var contentString = "Food <span style='font-size:10px;'>&#9989;</span>"+ "Indoor <span style='font-size:10px;'>&#10060;</span>"+ "Restroom <span style='font-size:10px;'>&#9989;</span>"+ "Outdoor <span style='font-size:10px;'>&#10060;</span"
-           
 
-          var infowindow = new google.maps.InfoWindow({
-          content: contentString
-          });
-          var marker = new google.maps.Marker({
-              position: cords,
-              map: map,
-              title: address,
-              draggable:true
-          });
-          google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-          });
-        });
-    
-        
-    }
-
-function geoFindMe() {
-
-  const lat = document.querySelector('#lat');
-  const long = document.querySelector('#long');
-
-  function success(position) {
-    const latitude  = position.coords.latitude;
-    const longitude = position.coords.longitude;
-
-    
-    long.value = longitude;
-    lat.value = latitude;
-    initializeMap(latitude, longitude);
-  }
-
-  function error() {
-
-    status.textContent = 'Unable to retrieve your location';
-  }
-
-  if (!navigator.geolocation) {
-    status.textContent = 'Geolocation is not supported by your browser';
-  } else {
-    status.textContent = 'Locating…';
-    navigator.geolocation.getCurrentPosition(success, error);
-  }
-
-}
-// wait for the page to fully finish loading
-document.addEventListener("DOMContentLoaded", function(){
-  initializeMap();
-  document.querySelector('#find-me').addEventListener('click', geoFindMe );
-});
-</script>
 <div class="container" style="padding-top: 25px; padding-bottom: 25px">
 
   <div style="display: flex; justify-content: space-between; flex-wrap: wrap">
+      <div id="playgrounds-map" style="flex:1; height: 500px"></div>
     
-    <div id="playgrounds-map" style="flex: 1; height: 500px"></div>
-
     <div>
       <div class="container shadow p-3 mb-5 rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: 10px; padding: 10px">  
         <%= form_with(url: "/welcome/index", method: "get", local: true) do %>
-        
+         
           <h5> Search For a Playground </h5>
 
           <div class="button">
@@ -155,4 +79,80 @@ document.addEventListener("DOMContentLoaded", function(){
 <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBerBaV7mRUPDf9RzDC2Cct-6Et3ty1YoA">
  </script>
- 
+ <script>
+function initializeMap(latitude, longitude) {
+      
+        if(playgrounds.length === 0 && !latitude && !longitude){
+          return
+        } else if(latitude && longitude) {
+          playgrounds.unshift({latitude: latitude, longitude: longitude, image: "" })
+        }
+        
+        var myCoords = new google.maps.LatLng(playgrounds[0].latitude,playgrounds[0].longitude);
+        
+        var address = "test"
+  
+        var mapOptions = {
+           zoom: 12,
+           scrollwheel: false,   
+           center: myCoords
+        }
+    
+        var map = new google.maps.Map(document.getElementById('playgrounds-map'), mapOptions);
+        playgrounds.forEach(playground => {
+          var cords = new google.maps.LatLng(playground.latitude,playground.longitude);
+          var contentString = "Food <span style='font-size:10px;'>&#9989;</span>"+ "Indoor <span style='font-size:10px;'>&#10060;</span>"+ "Restroom <span style='font-size:10px;'>&#9989;</span>"+ "Outdoor <span style='font-size:10px;'>&#10060;</span>"
+           
+
+          var infowindow = new google.maps.InfoWindow({
+          content: contentString
+          });
+          var marker = new google.maps.Marker({
+              position: cords,
+              map: map,
+              title: address,
+              draggable:true
+          });
+          google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+          });
+        });
+        
+    }
+
+function geoFindMe() {
+
+  const lat = document.querySelector('#lat');
+  const long = document.querySelector('#long');
+  function success(position) {
+    const latitude  = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    
+    long.value = longitude;
+    lat.value = latitude;
+    initializeMap(latitude, longitude);
+  }
+
+  function error() {
+    alert('Unable to retrieve your location');
+  }
+
+  if (!navigator.geolocation) {
+    alert('Unable to retrieve your location');
+  } else {
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
+}
+// wait for the page to fully finish loading
+if( document.readyState !== 'loading' ) {
+    initializeMap();
+    document.querySelector('#find-me').addEventListener('click', geoFindMe );
+} else {
+ document.addEventListener("DOMContentLoaded", function(){
+    initializeMap();
+    document.querySelector('#find-me').addEventListener('click', geoFindMe );
+  });
+}
+</script>

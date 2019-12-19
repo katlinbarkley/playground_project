@@ -6,7 +6,7 @@ class Playground < ActiveRecord::Base
 
     def look_up_address
 
-      "#{@address}, US"
+      "#{address}, US"
 
     end
       
