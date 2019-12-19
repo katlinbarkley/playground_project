@@ -23,10 +23,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" style="color: black" href="#">List of Playgrounds</a>
+        <%= link_to "List of Playgrounds", playgrounds_path, class:"nav-link", style:"color: black"  %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" style="color: black" href="#">Add a Playground</a>
+        <%= link_to "Add a Playground", new_playground_path, class:"nav-link", style:"color: black"  %>
       </li>
       <% if user_signed_in? %>
       <li class="nav-item d-lg-none">
