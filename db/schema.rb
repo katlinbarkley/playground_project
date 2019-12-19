@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2019_12_18_151733) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "zipcode"
-    t.string "lat"
-    t.string "long"
+    t.string "latitude"
+    t.string "longitude"
     t.boolean "outdoor"
     t.boolean "restrooms"
   end

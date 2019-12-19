@@ -1,8 +1,8 @@
 
 <h6> Already have an account? </h6>
 <%- if controller_name != 'sessions' %>
-  <div class="form-group btn btn-success">
-  <a style="color: white"><%= link_to "Login", new_session_path(resource_name) %></a><br />
+  <div class="form-group">
+  <%= link_to "Login", new_session_path(resource_name), class: "btn btn-success" %><br />
   </div>
 <% end %>
 

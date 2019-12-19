@@ -3,8 +3,8 @@
    <%if @playgrounds%>
     <%@playgrounds.each do |playground|%>
     playgrounds.push({
-        'latitude': '<%= j playground[:latitude].to_s %>',
-        'longitude': '<%= j playground[:longitude].to_s %>',
+        'latitude': '<%= j playground.latitude.to_s %>',
+        'longitude': '<%= j playground.longitude.to_s %>',
         'image': ''
       })   
       <% end %>
@@ -153,6 +153,6 @@ document.addEventListener("DOMContentLoaded", function(){
 </div>
 
 <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwaS55Rxj3QkmM3vunzF9sqpl-YRj6lc8">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBerBaV7mRUPDf9RzDC2Cct-6Et3ty1YoA">
  </script>
  

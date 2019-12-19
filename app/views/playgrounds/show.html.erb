@@ -1,44 +1,67 @@
-<p id="notice"><%= notice %></p>
+<div class="container" style="padding-top: 25px; padding-bottom: 25px">
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap">
+<div class="shadow p-3 mb-5 bg-white rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: auto; width: 350px">
 
+<p id="notice"><%= notice %></p>
+<h3>Playground Updated:</h3>
 <p>
-  <strong>Address:</strong>
+  <strong>Address:</strong></br>
   <%= @playground.address %>
 </p>
 
 <p>
-  <strong>Indoor:</strong>
+  <strong>Zipcode:</strong></br>
+  <%= @playground.zipcode %>
+</p>
+
+<p>
+  <strong>Indoor:</strong></br>
   <%= @playground.indoor %>
 </p>
 
 <p>
-  <strong>Food:</strong>
+  <strong>Outdoor:</strong></br>
+  <%= @playground.outdoor %>
+</p>
+
+<p>
+  <strong>Restrooms:</strong></br>
+  <%= @playground.restrooms %>
+</p>
+
+<p>
+  <strong>Food:</strong></br>
   <%= @playground.food %>
 </p>
 
 <p>
-  <strong>Restaurant:</strong>
+  <strong>Restaurant:</strong></br>
   <%= @playground.restaurant %>
 </p>
 
 <p>
-  <strong>Fun:</strong>
+  <strong>Fun:</strong></br>
   <%= @playground.fun %>
 </p>
 
 <p>
-  <strong>Clean:</strong>
+  <strong>Clean:</strong></br>
   <%= @playground.clean %>
 </p>
 
 <p>
-  <strong>Safety:</strong>
+  <strong>Safety:</strong></br>
   <%= @playground.safety %>
 </p>
 
 <p>
-  <strong>Photo:</strong>
+  <strong>Photo:</strong></br>
   <%= @playground.photo %>
 </p>
 
-<%= link_to 'Edit', edit_playground_path(@playground) %> |
-<%= link_to 'Back', playgrounds_path %>
+<%= link_to 'Edit', edit_playground_path(@playground), class:"btn btn-danger" %> |
+<%= link_to 'Back', playgrounds_path, class:"btn btn-success" %>
+
+</div>
+</div>
+</div>

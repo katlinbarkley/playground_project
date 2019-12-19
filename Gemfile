@@ -53,3 +53,5 @@ gem 'carrierwave', '~> 2.0', '>= 2.0.2'
 gem 'better_errors'
 gem 'binding_of_caller'
 gem 'pry-rails'
+
+gem 'geocoder'
