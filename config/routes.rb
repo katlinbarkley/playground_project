@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'admin/index'
 
   get 'playgrounds/index'
+
+  get 'playgrounds/new'
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
