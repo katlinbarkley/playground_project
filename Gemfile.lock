@@ -91,6 +91,7 @@ GEM
     faraday (0.17.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.11.3)
+    geocoder (1.5.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (3.6.0)
@@ -248,6 +249,7 @@ DEPENDENCIES
   byebug
   carrierwave (~> 2.0, >= 2.0.2)
   devise
+  geocoder
   jbuilder (~> 2.7)
   listen (>= 3.0.5, < 3.2)
   omniauth-google-oauth2
