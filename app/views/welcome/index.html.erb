@@ -1,10 +1,94 @@
+<%= javascript_tag do %>
+   var playgrounds = []
+   <%if @playgrounds%>
+    <%@playgrounds.each do |playground|%>
+    playgrounds.push({
+        'latitude': '<%= j playground[:latitude].to_s %>',
+        'longitude': '<%= j playground[:longitude].to_s %>',
+        'image': ''
+      })   
+      <% end %>
+    <% end %>
+<% end %>
+<script>
+function initializeMap(latitude, longitude) {
+      
+        if(playgrounds.length === 0 && !latitude && !longitude){
+          return
+        } else if(latitude && longitude) {
+          playgrounds.unshift({latitude: latitude, longitude: longitude, image: "" })
+        }
+        
+        var myCoords = new google.maps.LatLng(playgrounds[0].latitude,playgrounds[0].longitude);
+        
+        var address = "test"
+  
+        var mapOptions = {
+           zoom: 12,
+           scrollwheel: false,   
+           center: myCoords
+        }
+    
+        var map = new google.maps.Map(document.getElementById('playgrounds-map'), mapOptions);
+        playgrounds.forEach(playground => {
+          var cords = new google.maps.LatLng(playground.latitude,playground.longitude);
+          var contentString = '<h2>'+ address + " " + playground.latitude + " " + playground.longitude + '</h2>' + "<img src='" + playground.image + "'/>"
+    
+          var infowindow = new google.maps.InfoWindow({
+          content: contentString
+          });
+          var marker = new google.maps.Marker({
+              position: cords,
+              map: map,
+              title: address,
+              draggable:true
+          });
+          google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+          });
+        });
+    
+        
+    }
+function geoFindMe() {
 
+  const lat = document.querySelector('#lat');
+  const long = document.querySelector('#long');
+
+  function success(position) {
+    const latitude  = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    
+    long.value = longitude;
+    lat.value = latitude;
+    initializeMap(latitude, longitude);
+  }
+
+  function error() {
+
+    status.textContent = 'Unable to retrieve your location';
+  }
+
+  if (!navigator.geolocation) {
+    status.textContent = 'Geolocation is not supported by your browser';
+  } else {
+    status.textContent = 'Locating…';
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+
+}
+// wait for the page to fully finish loading
+document.addEventListener("DOMContentLoaded", function(){
+  initializeMap();
+  document.querySelector('#find-me').addEventListener('click', geoFindMe );
+});
+</script>
 <div class="container" style="padding-top: 25px; padding-bottom: 25px">
+
   <div style="display: flex; justify-content: space-between; flex-wrap: wrap">
     
-    <div>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12947.49722650415!2d-78.64553645!3d35.7784638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89ac5f7062c4d69d%3A0x9a1d32a2ea4a817d!2sThe%20Pit%20Authentic%20Barbecue!5e0!3m2!1sen!2sus!4v1576680864619!5m2!1sen!2sus" frameborder="0" style="border:0; flex: 1; height: auto" allowfullscreen=""></iframe>
-    </div>
+    <div id="playgrounds-map" style="flex: 1; height: 500px"></div>
 
     <div>
       <div class="container shadow p-3 mb-5 rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: 10px; padding: 10px">  
@@ -19,9 +103,10 @@
 
           <div class="button">
             <label for="current_location">
-            <a style="font-size: 12px; color: black; text-decoration: underline" href="#">Use my current location</a>
+            <span id="find-me" style="font-size: 12px; color: black; text-decoration: underline; cursor:pointer">Use my current location</a>
             </label>
             </div>
+
 
           <div class="form-group">
             <label for="select_radius">View results within:</label>
@@ -64,3 +149,8 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwaS55Rxj3QkmM3vunzF9sqpl-YRj6lc8">
+ </script>
+ 
