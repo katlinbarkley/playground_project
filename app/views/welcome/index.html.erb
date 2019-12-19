@@ -32,8 +32,9 @@ function initializeMap(latitude, longitude) {
         var map = new google.maps.Map(document.getElementById('playgrounds-map'), mapOptions);
         playgrounds.forEach(playground => {
           var cords = new google.maps.LatLng(playground.latitude,playground.longitude);
-          var contentString = '<h2>'+ address + " " + playground.latitude + " " + playground.longitude + '</h2>' + "<img src='" + playground.image + "'/>"
-    
+          var contentString = "Food <span style='font-size:10px;'>&#9989;</span>"+ "Indoor <span style='font-size:10px;'>&#10060;</span>"+ "Restroom <span style='font-size:10px;'>&#9989;</span>"+ "Outdoor <span style='font-size:10px;'>&#10060;</span"
+           
+
           var infowindow = new google.maps.InfoWindow({
           content: contentString
           });
@@ -50,6 +51,7 @@ function initializeMap(latitude, longitude) {
     
         
     }
+
 function geoFindMe() {
 
   const lat = document.querySelector('#lat');
