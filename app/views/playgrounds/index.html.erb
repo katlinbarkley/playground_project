@@ -6,7 +6,10 @@
   <thead>
     <tr>
       <th>Address</th>
+      <th>Zipcode</th>
       <th>Indoor</th>
+      <th>Outdoor</th>
+      <th>Restrooms</th>
       <th>Food</th>
       <th>Restaurant</th>
       <th>Fun</th>
@@ -21,7 +24,10 @@
     <% @playgrounds.each do |playground| %>
       <tr>
         <td><%= playground.address %></td>
+        <td><%= playground.zipcode %></td>
         <td><%= playground.indoor %></td>
+        <td><%= playground.outdoor %></td>
+        <td><%= playground.restrooms %></td>
         <td><%= playground.food %></td>
         <td><%= playground.restaurant %></td>
         <td><%= playground.fun %></td>
