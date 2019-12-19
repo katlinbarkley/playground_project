@@ -70,6 +70,6 @@ class PlaygroundsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def playground_params
-      params.require(:playground).permit(:address, :indoor, :food, :restaurant, :fun, :clean, :safety, :photo)
+      params.require(:playground).permit(:address, :zipcode, :indoor, :outdoor, :restrooms, :food, :restaurant, :fun, :clean, :safety, :photo)
     end
 end
