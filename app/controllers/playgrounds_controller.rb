@@ -5,7 +5,8 @@ class PlaygroundsController < ApplicationController
   # GET /playgrounds
   # GET /playgrounds.json
   def index
-    @playgrounds = Playground.all
+    @search = Playground.search(params[:q])
+    @playgrounds = @search.result
   end
 
   # GET /playgrounds/1
