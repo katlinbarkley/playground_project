@@ -49,17 +49,17 @@
 
   <div class="form-group">
     <%= form.label :fun %>
-    <%= select_tag(:fun, options_for_select([['select rating'], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), class:"form-control") %>
+    <%= form.select(:fun, options_for_select([['select rating'], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], @playground.fun), {}, {class:"form-control"}) %>
   </div>
 
   <div class="form-group">
     <%= form.label :clean %>
-    <%= select_tag(:clean, options_for_select([['select rating'], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), class:"form-control") %>
+    <%= form.select(:clean, options_for_select([['select rating'], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], @playground.clean), {}, {class:"form-control"}) %>
   </div>
 
   <div class="form-group">
     <%= form.label :safety %>
-    <%= select_tag(:safety, options_for_select([['select rating'], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]]), class:"form-control") %>
+    <%= form.select(:safety, options_for_select([['select rating'], ['1', 1], ['2', 2], ['3', 3], ['4', 4], ['5', 5]], @playground.safety), {}, {class:"form-control"}) %>
   </div>
 
   <div class="form-group">

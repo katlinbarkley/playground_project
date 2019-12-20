@@ -37,7 +37,7 @@
         <td><%= playground.clean %></td>
         <td><%= playground.safety %></td>
         <td><% if playground.photo.url.present? %>
-          <%= image_tag(playground.photo.url, :class => "img-thumbnail", :style => "display: inline; cursor: pointer;",:data=>{:toggle => "modal", :target => "#photo-modal-#{playground.id}"}) %>
+          <%= image_tag(playground.photo.url, :class => "img-thumbnail", :style => "display: inline; cursor: pointer; max-width: 100px",:data=>{:toggle => "modal", :target => "#photo-modal-#{playground.id}"}) %>
           <!-- Modal -->
           <div class="modal fade" id="photo-modal-<%=playground.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
