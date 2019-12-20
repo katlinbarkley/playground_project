@@ -5,7 +5,13 @@
     playgrounds.push({
         'latitude': '<%= j playground.latitude.to_s %>',
         'longitude': '<%= j playground.longitude.to_s %>',
-        'image': ''
+        'food': <%= j playground.food  || "false"%>,
+        'restrooms': <%= j playground.restrooms  || "false"%>,
+        'indoor': <%= j playground.indoor  || "false"%>,
+        'outdoor': <%= j playground.outdoor || "false"%>,
+        'clean': <%= j playground.clean %>,
+        'fun': <%= j playground.fun %>,
+        'safety': <%= j playground.safety %>
       })   
       <% end %>
     <% end %>
@@ -91,7 +97,14 @@ function initializeMap(latitude, longitude) {
         var map = new google.maps.Map(document.getElementById('playgrounds-map'), mapOptions);
         playgrounds.forEach(playground => {
           var cords = new google.maps.LatLng(playground.latitude,playground.longitude);
-          var contentString = "Food <span style='font-size:10px;'>&#9989;</span>"+ "Indoor <span style='font-size:10px;'>&#10060;</span>"+ "Restroom <span style='font-size:10px;'>&#9989;</span>"+ "Outdoor <span style='font-size:10px;'>&#10060;</span>"
+          var contentString = playground.food ? "Food <span style='font-size:10px;'>&#9989;</span><br>" : "Food <span style='font-size:10px;'>&#10060;</span><br>" ;          var contentString = playground.food ? "Food <span style='font-size:10px;'>&#9989;</span><br>" : "Food <span style='font-size:10px;'>&#10060;</span><br>" ;
+          contentString += playground.restrooms ? "Restrooms <span style='font-size:10px;'>&#9989;</span><br>" : "Restrooms <span style='font-size:10px;'>&#10060;</span><br>" ;
+          contentString += playground.indoor ? "Indoor <span style='font-size:10px;'>&#9989;</span><br>" : "Indoor <span style='font-size:10px;'>&#10060;</span><br>" ;
+          contentString += playground.outdoor ? "Outdoor <span style='font-size:10px;'>&#9989;</span><br>" : "Outdoor <span style='font-size:10px;'>&#10060;</span><br>" ;
+          contentString += playground.fun ? "Fun <span style='font-size:10px;'>" + playground.fun + "</span><br>" : "Fun <span style='font-size:10px;'>?</span><br>" ;
+          contentString += playground.clean ? "Clean <span style='font-size:10px;'>" + playground.clean + "</span><br>" : "Clean <span style='font-size:10px;'>?</span><br>" ;
+          contentString += playground.safety ? "Safety <span style='font-size:10px;'>" + playground.safety + "</span><br>" : "Safety <span style='font-size:10px;'>?</span><br>" ;
+          
            
 
           var infowindow = new google.maps.InfoWindow({
