@@ -12,3 +12,30 @@ $theme-colors: (
 .btn-success {
   color: #ffff;
 }
+#playgrounds-search-container{
+  display: flex; 
+  flex-wrap: wrap; 
+  padding:5px
+
+}
+#playgrounds-map {
+  flex:2;
+  height: 500px;
+}
+#playground-search{
+  align-self: center;
+  max-width: 325px;
+  background-color: #FCFCFA;
+}
+@media only screen and (min-width: 200px) and (max-width: 1023px)  {
+  //Put your CSS here for 200px to 1023px width devices (cover all mobile portrait width //
+  #playgrounds-search-container {
+    display: flex; 
+    flex-direction:column;
+    padding:5px;
+  }
+  #playgrounds-map {
+    flex:1;
+    height: 350px;
+  }
+}

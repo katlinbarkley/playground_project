@@ -1,12 +1,13 @@
 class PlaygroundsController < ApplicationController
   before_action :set_playground, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
   # GET /playgrounds
   # GET /playgrounds.json
   def index
-    @playgrounds = Playground.all
+    @search = Playground.search(params[:q])
+    @playgrounds = @search.result
   end
+
 
   # GET /playgrounds/1
   # GET /playgrounds/1.json
@@ -34,7 +35,7 @@ class PlaygroundsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @playground.errors, status: :unprocessable_entity }
-      end
+      end 
     end
   end
 

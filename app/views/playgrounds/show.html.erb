@@ -58,8 +58,9 @@
   <strong>Photo:</strong></br>
   <%= image_tag(@playground.photo.url, :style => "width:100%") if @playground.photo.url.present? %>
 </p>
-
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_playground_path(@playground), class:"btn btn-danger" %> |
+<% end %>
 <%= link_to 'Back', playgrounds_path, class:"btn btn-success" %>
 
 </div>
