@@ -1,9 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-<<<<<<< HEAD
-    @playgrounds = Playground.all
-=======
->>>>>>> f855130125b68a14c35d04741671b5d31f68dd68
     @zipcode = params[:zipcode]
     @lat = params[:lat]
     @long = params[:long]

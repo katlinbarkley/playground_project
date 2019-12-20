@@ -138,12 +138,12 @@ function geoFindMe() {
 // wait for the page to fully finish loading
 if( document.readyState !== 'loading' ) {
     initializeMap();
-    // geoFindMe();
+    geoFindMe();
     document.querySelector('#find-me').addEventListener('click', geoFindMe );
 } else {
  document.addEventListener("DOMContentLoaded", function(){
     initializeMap();
-    // geoFindMe();
+    geoFindMe();
     document.querySelector('#find-me').addEventListener('click', geoFindMe );
   });
 }
