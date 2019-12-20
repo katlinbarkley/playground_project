@@ -1,6 +1,6 @@
 class PlaygroundsController < ApplicationController
   before_action :set_playground, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   # GET /playgrounds
   # GET /playgrounds.json
   def index
