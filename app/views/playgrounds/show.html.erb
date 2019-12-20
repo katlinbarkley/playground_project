@@ -1,6 +1,6 @@
 <div class="container" style="padding-top: 25px; padding-bottom: 25px">
-<div style="display: flex; justify-content: space-between; flex-wrap: wrap">
-<div class="shadow p-3 mb-5 bg-white rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: auto; width: 350px">
+
+<div class="shadow p-3 mb-5 bg-white rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: auto;">
 
 <p id="notice"><%= notice %></p>
 <h3>Playground Updated:</h3>
@@ -16,27 +16,27 @@
 
 <p>
   <strong>Indoor:</strong></br>
-  <%= @playground.indoor %>
+  <%= @playground.indoor ? "yes" : "no"%>
 </p>
 
 <p>
   <strong>Outdoor:</strong></br>
-  <%= @playground.outdoor %>
+  <%= @playground.outdoor ? "yes" : "no"%>
 </p>
 
 <p>
   <strong>Restrooms:</strong></br>
-  <%= @playground.restrooms %>
+  <%= @playground.restrooms ? "yes" : "no"%>
 </p>
 
 <p>
   <strong>Food:</strong></br>
-  <%= @playground.food %>
+  <%= @playground.food ? "yes" : "no"%>
 </p>
 
 <p>
   <strong>Restaurant:</strong></br>
-  <%= @playground.restaurant %>
+  <%= @playground.food ? "" : "none"%>
 </p>
 
 <p>
@@ -56,12 +56,12 @@
 
 <p>
   <strong>Photo:</strong></br>
-  <%= @playground.photo %>
+  <%= image_tag(@playground.photo.url, :style => "width:100%") if @playground.photo.url.present? %>
 </p>
-
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_playground_path(@playground), class:"btn btn-danger" %> |
+<% end %>
 <%= link_to 'Back', playgrounds_path, class:"btn btn-success" %>
 
-</div>
 </div>
 </div>

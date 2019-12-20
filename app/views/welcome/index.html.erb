@@ -5,38 +5,36 @@
     playgrounds.push({
         'latitude': '<%= j playground.latitude.to_s %>',
         'longitude': '<%= j playground.longitude.to_s %>',
-        'image': ''
+        'food': <%= j playground.food  || "false"%>,
+        'restrooms': <%= j playground.restrooms  || "false"%>,
+        'indoor': <%= j playground.indoor  || "false"%>,
+        'outdoor': <%= j playground.outdoor || "false"%>,
+        'clean': <%= j playground.clean %>,
+        'fun': <%= j playground.fun %>,
+        'safety': <%= j playground.safety %>
       })   
       <% end %>
     <% end %>
 <% end %>
 
-<div class="container" style="padding-top: 25px; padding-bottom: 25px">
 
-  <div style="display: flex; justify-content: space-between; flex-wrap: wrap">
-      <div id="playgrounds-map" style="flex:1; height: 500px"></div>
-    
-    <div>
-      <div class="container shadow p-3 mb-5 rounded" style="background-color: #FCFCFA; border-style: solid; border-width: 2px; border-color: #b9c8bc; margin: 10px; padding: 10px">  
+  <div id="playgrounds-search-container">
+      <div style="flex:1">
+      <div id="playgrounds-map"></div>
+      </div>
+      <div id="playground-search" class="container shadow p-2 m-1 mt-3 border rounded" >  
         <%= form_with(url: "/welcome/index", method: "get", local: true) do %>
          
           <h5> Search For a Playground </h5>
-
-          <div class="button">
-            <label for="zipcode_search">Zipcode</label>
-            <%= text_field_tag(:zipcode, @zipcode, class:"form-control") %>
-            </div>
 
           <div class="button">
             <label for="current_location">
             <span id="find-me" style="font-size: 12px; color: black; text-decoration: underline; cursor:pointer">Use my current location</a>
             </label>
             </div>
-
-
           <div class="form-group">
             <label for="select_radius">View results within:</label>
-            <%= select_tag(:radius, options_for_select([['5 miles', 5], ['10 miles', 10], ['25 miles', 25], ['50 miles', 50], ['100 miles', 100]]), class:"form-control") %>
+            <%= select_tag(:radius, options_for_select([['5 miles', 5], ['10 miles', 10], ['25 miles', 25], ['50 miles', 50], ['100 miles', 100]],@radius), class:"form-control") %>
           </div>
 
           <div class="form-group">
@@ -44,22 +42,22 @@
             <h6>Only show playgrounds with:</h6>
 
             <div class="checkbox">
-                <%= check_box_tag(:food, class:"checkbox") %>
+                <%= check_box_tag(:food, 1, @food, class:"checkbox") %>
                 <label for="food">food</label>
             </div>
 
             <div class="checkbox">
-                <%= check_box_tag(:restrooms, class:"checkbox") %>
+                <%= check_box_tag(:restrooms,1, @restrooms, class:"checkbox") %>
                 <label for="restrooms">restrooms</label>
             </div>
 
             <div class="checkbox">
-                <%= check_box_tag(:outdoor, class:"checkbox") %>
+                <%= check_box_tag(:outdoor,1, @outdoor, class:"checkbox") %>
                 <label for="outdoor">outdoor</label>
             </div>
 
             <div class="checkbox">
-                <%= check_box_tag(:indoor, class:"checkbox") %>
+                <%= check_box_tag(:indoor,1, @indoor ,class:"checkbox") %>
                 <label for="indoor">indoor</label>
             </div>
 
@@ -67,14 +65,12 @@
 
         <%= submit_tag("Search", class:"btn btn-primary") %>
 
-        <%= hidden_field_tag(:lat, "201") %>
-        <%= hidden_field_tag(:long, "300") %>
+        <%= hidden_field_tag(:lat, @lat) %>
+        <%= hidden_field_tag(:long, @long) %>
 
         <% end %>
       </div>
-    </div>
   </div>
-</div>
 
 <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBerBaV7mRUPDf9RzDC2Cct-6Et3ty1YoA">
@@ -101,7 +97,14 @@ function initializeMap(latitude, longitude) {
         var map = new google.maps.Map(document.getElementById('playgrounds-map'), mapOptions);
         playgrounds.forEach(playground => {
           var cords = new google.maps.LatLng(playground.latitude,playground.longitude);
-          var contentString = "Food <span style='font-size:10px;'>&#9989;</span>"+ "Indoor <span style='font-size:10px;'>&#10060;</span>"+ "Restroom <span style='font-size:10px;'>&#9989;</span>"+ "Outdoor <span style='font-size:10px;'>&#10060;</span>"
+          var contentString = playground.food ? "Food <span style='font-size:10px;'>&#9989;</span><br>" : "Food <span style='font-size:10px;'>&#10060;</span><br>" ;          var contentString = playground.food ? "Food <span style='font-size:10px;'>&#9989;</span><br>" : "Food <span style='font-size:10px;'>&#10060;</span><br>" ;
+          contentString += playground.restrooms ? "Restrooms <span style='font-size:10px;'>&#9989;</span><br>" : "Restrooms <span style='font-size:10px;'>&#10060;</span><br>" ;
+          contentString += playground.indoor ? "Indoor <span style='font-size:10px;'>&#9989;</span><br>" : "Indoor <span style='font-size:10px;'>&#10060;</span><br>" ;
+          contentString += playground.outdoor ? "Outdoor <span style='font-size:10px;'>&#9989;</span><br>" : "Outdoor <span style='font-size:10px;'>&#10060;</span><br>" ;
+          contentString += playground.fun ? "Fun <span style='font-size:10px;'>" + playground.fun + "</span><br>" : "Fun <span style='font-size:10px;'>?</span><br>" ;
+          contentString += playground.clean ? "Clean <span style='font-size:10px;'>" + playground.clean + "</span><br>" : "Clean <span style='font-size:10px;'>?</span><br>" ;
+          contentString += playground.safety ? "Safety <span style='font-size:10px;'>" + playground.safety + "</span><br>" : "Safety <span style='font-size:10px;'>?</span><br>" ;
+          
            
 
           var infowindow = new google.maps.InfoWindow({
@@ -148,10 +151,12 @@ function geoFindMe() {
 // wait for the page to fully finish loading
 if( document.readyState !== 'loading' ) {
     initializeMap();
+    geoFindMe();
     document.querySelector('#find-me').addEventListener('click', geoFindMe );
 } else {
  document.addEventListener("DOMContentLoaded", function(){
     initializeMap();
+    geoFindMe();
     document.querySelector('#find-me').addEventListener('click', geoFindMe );
   });
 }
