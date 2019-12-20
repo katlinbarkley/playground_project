@@ -1,6 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @playgrounds= Playground.all
+    @playgrounds = Playground.all
     @zipcode = params[:zipcode]
     @lat = params[:lat]
     @long = params[:long]
@@ -10,4 +10,5 @@ class WelcomeController < ApplicationController
     @indoor = params[:indoor]
     @outdoor = params[:outdoor]
   end
+
 end

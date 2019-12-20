@@ -12,12 +12,10 @@
   </div>
   <div class="field">
     <%= f.label :restaurant_cont, "Restaurant contains" %>
-    <%= f.text_field :restaurant_cont %>
+    <%= f.text_field :restaurant_cont %> 
   </div>
-    <div class="field">
-    <%= f.label :restaurant_cont, "Restaurant contains" %>
-    <%= f.text_field :restaurant_cont %>
-  </div>
+
+
   <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
 
@@ -55,18 +53,23 @@
         <td><%= playground.safety %></td>
         <td><%= playground.photo %></td>
         <td><%= link_to 'Show', playground %></td>
-        <td><%= link_to 'Edit', edit_playground_path(playground) %></td>
-        <% if current_user.role == "admin" %>
-        <td><%= link_to 'Destroy', playground, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+          <% if user_signed_in? %>
+            <td><%= link_to 'Edit', edit_playground_path(playground) %></td>
+          <% end %>
+
+          <% if current_user.role == "admin"%>
+            <td><%= link_to 'Destroy', playground, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        
       </tr>
     <% end %>
   </tbody>
 </table>
  
 <br>
-
-<%= link_to 'New Playground', new_playground_path %>
+  <% if user_signed_in? %>
+    <%= link_to 'New Playground', new_playground_path %>
+  <% end %>
 
 </div>
 </div>
