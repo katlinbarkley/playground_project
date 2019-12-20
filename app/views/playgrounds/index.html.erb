@@ -28,15 +28,30 @@
       <tr>
         <td><%= playground.address %></td>
         <td><%= playground.zipcode %></td>
-        <td><%= playground.indoor %></td>
-        <td><%= playground.outdoor %></td>
-        <td><%= playground.restrooms %></td>
-        <td><%= playground.food %></td>
+        <td><%= playground.indoor ? "yes" : "no"%></td>
+        <td><%= playground.outdoor ? "yes" : "no"%></td>
+        <td><%= playground.restrooms ? "yes" : "no"%></td>
+        <td><%= playground.food ? "yes" : "no"%></td>
         <td><%= playground.restaurant %></td>
         <td><%= playground.fun %></td>
         <td><%= playground.clean %></td>
         <td><%= playground.safety %></td>
-        <td><%= playground.photo %></td>
+        <td><% if playground.photo.url.present? %>
+          <%= image_tag(playground.photo.url, :class => "img-thumbnail", :style => "display: inline; cursor: pointer;",:data=>{:toggle => "modal", :target => "#photo-modal-#{playground.id}"}) %>
+          <!-- Modal -->
+          <div class="modal fade" id="photo-modal-<%=playground.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                <%= image_tag(playground.photo.url, :style => "width:100%") %>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
         <td><%= link_to 'Show', playground %></td>
         <td><%= link_to 'Edit', edit_playground_path(playground) %></td>
         <% if current_user.role == "admin" %>
@@ -54,3 +69,5 @@
 </div>
 </div>
 </div>
+<% end %>
+
