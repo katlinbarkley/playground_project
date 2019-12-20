@@ -16,27 +16,27 @@
 
 <p>
   <strong>Indoor:</strong></br>
-  <%= @playground.indoor %>
+  <%= @playground.indoor ? "yes" : "no"%>
 </p>
 
 <p>
   <strong>Outdoor:</strong></br>
-  <%= @playground.outdoor %>
+  <%= @playground.outdoor ? "yes" : "no"%>
 </p>
 
 <p>
   <strong>Restrooms:</strong></br>
-  <%= @playground.restrooms %>
+  <%= @playground.restrooms ? "yes" : "no"%>
 </p>
 
 <p>
   <strong>Food:</strong></br>
-  <%= @playground.food %>
+  <%= @playground.food ? "yes" : "no"%>
 </p>
 
 <p>
   <strong>Restaurant:</strong></br>
-  <%= @playground.restaurant %>
+  <%= @playground.food ? "" : "none"%>
 </p>
 
 <p>
@@ -56,7 +56,7 @@
 
 <p>
   <strong>Photo:</strong></br>
-  <%= @playground.photo %>
+  <%= image_tag(@playground.photo.url, :style => "width:100%") if @playground.photo.url.present? %>
 </p>
 <% if user_signed_in? %>
 <%= link_to 'Edit', edit_playground_path(@playground), class:"btn btn-danger" %> |
