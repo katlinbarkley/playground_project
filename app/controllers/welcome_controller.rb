@@ -12,13 +12,12 @@ class WelcomeController < ApplicationController
     @playgrounds = []
 
     if @long.present? && @lat.present?
-      coord = [@lat,@long]
-      @radius = params[:radius].to_i
-      Playground.all.each do |playground|
+      coord = [@lat, @long]
+      @radius = params[:radius].present? ? params[:radius].to_i : 5
+      Playground.where("latitude is not null and longitude is not null").each do |playground|
         if playground.distance_to(coord) <= @radius
           @playgrounds << playground
         end
-
       end
     end
   end
