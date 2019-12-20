@@ -39,12 +39,14 @@
         <td><%= playground.photo %></td>
         <td><%= link_to 'Show', playground %></td>
         <td><%= link_to 'Edit', edit_playground_path(playground) %></td>
+        <% if current_user.role == "admin" %>
         <td><%= link_to 'Destroy', playground, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+ 
 <br>
 
 <%= link_to 'New Playground', new_playground_path %>
